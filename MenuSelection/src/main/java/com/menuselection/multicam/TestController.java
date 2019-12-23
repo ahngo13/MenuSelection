@@ -24,6 +24,7 @@ public class TestController {
 		
 		model.addAttribute("list", list);
 		return "test";
+		
 	}
 
 }
