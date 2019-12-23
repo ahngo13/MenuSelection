@@ -21,6 +21,7 @@ public class TestController {
 	public String test(Model model) throws Exception {
 		List<TestBean> list;
 		list = service.test();
+		
 		model.addAttribute("list", list);
 		return "test";
 	}
