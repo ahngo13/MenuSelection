@@ -37,9 +37,9 @@ public class KakaoRestApiHelper {
 			JsonObject jsonObject = (JsonObject) jsonParser.parse(result.getBody());
 			JsonArray jsonArray = (JsonArray) jsonObject.get("documents");
 			
-			JsonObject local = (JsonObject) jsonArray.get(0);
-			JsonObject jsonArray1 = (JsonObject) local.get("address");
-			String localAddress = (String)jsonArray1.get("address_name").toString();
+//			JsonObject local = (JsonObject) jsonArray.get(0);
+//			JsonObject jsonArray1 = (JsonObject) local.get("address");
+//			String localAddress = (String)jsonArray1.get("address_name").toString();
 			
 			return "success";
 		}catch (Exception e) {
