@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>		
 		<typeAlias alias="Test" type="com.menuselection.multicam.bean.TestBean" />
+		<typeAlias alias="Kakao" type="com.menuselection.multicam.bean.KakaoBean" />
 	</typeAliases>
     
 </configuration>
