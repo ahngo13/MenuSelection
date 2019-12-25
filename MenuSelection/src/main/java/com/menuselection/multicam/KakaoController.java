@@ -3,6 +3,7 @@ package com.menuselection.multicam;
 
 import javax.inject.Inject;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class KakaoController {
 //		List<KakaoBean> list;
 //		list = service.kakao();
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
-		String result = helper.getAddressKakao(keyword);
+		ResponseEntity<String> result = helper.getKeywordMap(keyword);
 		model.addAttribute("result", result);
 		return "kakao";
 		
