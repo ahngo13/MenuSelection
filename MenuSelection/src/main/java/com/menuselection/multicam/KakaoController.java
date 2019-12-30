@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.menuselection.multicam.bean.KakaoBean;
 import com.menuselection.multicam.common.KakaoRestApiHelper;
 import com.menuselection.multicam.service.KakaoService;
 
@@ -24,7 +25,8 @@ public class KakaoController {
 //		List<KakaoBean> list;
 //		list = service.kakao();
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
-		ResponseEntity<String> result = helper.getKeywordMap(keyword);
+//		ResponseEntity<String> result = helper.getKeywordMap(keyword);
+		KakaoBean result = helper.getKeywordMap(keyword);
 		model.addAttribute("result", result);
 		return "kakao";
 		

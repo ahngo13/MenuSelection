@@ -13,6 +13,7 @@ public class DocumentBean {
 	String categoryGroupName;
 	String x;
 	String y;
+	
 	public String getPlaceName() {
 		return placeName;
 	}

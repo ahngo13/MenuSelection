@@ -13,7 +13,6 @@ public class KakaoBean {
 	int pageableCount;
 	int totalCount;
 	boolean isEnd;
-	
 
 	ArrayList<DocumentBean> documentList;
 
@@ -57,11 +56,11 @@ public class KakaoBean {
 		this.totalCount = totalCount;
 	}
 
-	public boolean isEnd() {
+	public boolean getIsEnd() {
 		return isEnd;
 	}
 
-	public void setEnd(boolean isEnd) {
+	public void setIsEnd(boolean isEnd) {
 		this.isEnd = isEnd;
 	}
 

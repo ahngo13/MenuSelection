@@ -2,6 +2,7 @@ package com.menuselection.multicam.common;
 
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -17,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.menuselection.multicam.bean.DocumentBean;
+import com.menuselection.multicam.bean.KakaoBean;
 
 public class KakaoRestApiHelper {
 //	@Value("${kakao.restapi.key}")
@@ -66,7 +69,7 @@ public class KakaoRestApiHelper {
 	/*
 	 * 카카오맵 키워드로 장소 검색
 	 * */
-	public ResponseEntity<String> getKeywordMap(String keyword) throws Exception{
+	public KakaoBean getKeywordMap(String keyword) throws Exception{
 		
 			/*
 			 * final String APP_KEY = "600f124241db7f169bbb637ce49d6472"; // final String
@@ -96,7 +99,8 @@ public class KakaoRestApiHelper {
 			 * = (JsonObject) local.get("address"); // String localAddress =
 			 * (String)jsonArray1.get("address_name").toString();
 			 */			
-			
+			KakaoBean kakaoBean = new KakaoBean();	
+		
 	        String queryString = "?query="+URLEncoder.encode(keyword, "UTF-8"); //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
 	        RestTemplate restTemplate = new RestTemplate();
 	        HttpHeaders headers = new HttpHeaders();
@@ -108,7 +112,86 @@ public class KakaoRestApiHelper {
 	        URI url = URI.create(API_SERVER_HOST+SEARCH_PLACE_KEYWORD_PATH+queryString);
 	        RequestEntity<String> rq = new RequestEntity<>(headers, HttpMethod.GET, url);
 	        ResponseEntity<String> re = restTemplate.exchange(rq, String.class);
-			return re;
+	        
+	        JsonParser jsonParser = new JsonParser();
+			JsonObject jsonObject = (JsonObject) jsonParser.parse(re.getBody());
+			JsonArray jsonArrayDocuments = (JsonArray) jsonObject.get("documents");
+			JsonObject meta = (JsonObject)jsonObject.get("meta");
+			JsonObject sameName = (JsonObject) meta.get("same_name");
+			
+			
+			int pageableCount = 0;
+			if(meta.get("pageable_count") != null && !"".equals(meta.get("pageable_count").toString())){
+				pageableCount = Integer.parseInt(meta.get("pageable_count").toString());
+			}
+			
+			int totalCount = 0; 
+			if(meta.get("total_count") != null && !"".equals(meta.get("total_count").toString())) {
+				totalCount = Integer.parseInt(meta.get("total_count").toString());
+			}
+			String isEndToString = "";
+			if(meta.get("is_end") != null && !"".equals(meta.get("is_end").toString())) {
+				isEndToString = meta.get("is_end").toString();
+			}
+
+
+			String keywordName = "";
+			if(sameName.get("keyword") != null && !"".equals(sameName.get("keyword").toString())) {
+				keywordName = sameName.get("keyword").toString();
+			}
+			String selectedRegion = "";
+			if(sameName.get("selected_region") != null && !"".equals(sameName.get("selected_region").toString())) {
+				selectedRegion = sameName.get("selected_region").toString();
+			}
+			String region = ""; 
+			if(sameName.get("region") != null && !"".equals(sameName.get("region").toString())) {
+				region = sameName.get("region").toString();
+			}
+			Boolean isEnd;
+			
+			kakaoBean.setRegion(region);			
+			kakaoBean.setKeyword(keywordName);			
+			kakaoBean.setSelectedRegion(selectedRegion);	
+			kakaoBean.setPageableCount(pageableCount);
+			kakaoBean.setTotalCount(totalCount);
+			if("true".equals(isEndToString)){
+				isEnd = true;
+			}else{
+				isEnd = false;
+			}
+			kakaoBean.setIsEnd(isEnd);
+			
+			
+			ArrayList<DocumentBean> documentList = new ArrayList<DocumentBean>();
+
+			for(int i=0; i < jsonArrayDocuments.size(); i++) {
+				DocumentBean documentBean = new DocumentBean();
+				JsonObject documents = (JsonObject) jsonArrayDocuments.get(i);
+				documentBean.setPlaceName(documents.get("place_name").toString());
+				documentBean.setDistance(documents.get("distance").toString());
+				documentBean.setPlaceUrl(documents.get("place_url").toString());
+				documentBean.setCategoryName(documents.get("category_name").toString());
+				documentBean.setAddressName(documents.get("address_name").toString());
+				documentBean.setRoadAddressName(documents.get("road_address_name").toString());
+				documentBean.setId(documents.get("id").toString());
+				documentBean.setPhone(documents.get("phone").toString());
+				documentBean.setCategoryGroupCode(documents.get("category_group_code").toString());
+				documentBean.setCategoryGroupName(documents.get("category_group_name").toString());
+				documentBean.setX(documents.get("x").toString());
+				documentBean.setY(documents.get("y").toString());
+				
+				documentList.add(documentBean);
+			}
+			
+
+			
+			kakaoBean.setDocumentList(documentList);
+			
+//			JsonObject jsonArray1 = (JsonObject) local.get("address");
+//			String localAddress = (String)jsonArray1.get("address_name").toString();
+
+			
+			return kakaoBean;
 		
 	}
 	
