@@ -14,6 +14,11 @@ public class DocumentBean {
 	String x;
 	String y;
 	
+	//주소 검색 api로 인한 추가
+	String addressType;
+	AddressBean address;
+	RoadAddressBean roadAddress;
+	
 	public String getPlaceName() {
 		return placeName;
 	}
@@ -86,6 +91,24 @@ public class DocumentBean {
 	public void setY(String y) {
 		this.y = y;
 	}
-	
+	public String getAddressType() {
+		return addressType;
+	}
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
+	}
+	public AddressBean getAddress() {
+		return address;
+	}
+	public void setAddress(AddressBean address) {
+		this.address = address;
+	}
+	public RoadAddressBean getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(RoadAddressBean roadAddress) {
+		this.roadAddress = roadAddress;
+	}
 	
 }
+	
