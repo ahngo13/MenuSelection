@@ -9,7 +9,7 @@
 <body>
 
 	<%
-		String a = request.getParameter("value");
+		String a = request.getParameter("var");
 	%>
 	
 	<%= a %>

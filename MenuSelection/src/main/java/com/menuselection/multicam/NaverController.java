@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class NaverController {
 	
 	@RequestMapping(value = "/naver", method = RequestMethod.GET)
-	public String kakao(Model model, @RequestParam String value) throws Exception {
+	public String kakao(Model model, @RequestParam String var) throws Exception {
 
-		model.addAttribute("value", value);
+		model.addAttribute("var", var);
 		return "naver";
 		
 	}
