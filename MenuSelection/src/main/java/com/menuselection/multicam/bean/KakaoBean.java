@@ -10,8 +10,8 @@ public class KakaoBean {
     String selectedRegion;
 	
 	//meta
+    int totalCount;
 	int pageableCount;
-	int totalCount;
 	boolean isEnd;
 
 	ArrayList<DocumentBean> documentList;
