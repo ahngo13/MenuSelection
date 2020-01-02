@@ -4,12 +4,18 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>WorldcupMain</title>
 </head>
 <body>
 <h1>
 	Start The Food WorldCup!!!
-	<hr>	  
 </h1>
+
+<!--  	<img alt="" src=""> -->
+
+<p>Select the images</p>
+<img id="scream" width="220" height="277" src="/resources/images/testimage.jpg" alt="Photo">
+
+
 </body>
 </html>
