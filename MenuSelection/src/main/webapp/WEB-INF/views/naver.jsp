@@ -11,7 +11,6 @@
 	<%
 		String a = request.getParameter("var");
 	%>
-	
 	<%= a %>
 </body>
 </html>
