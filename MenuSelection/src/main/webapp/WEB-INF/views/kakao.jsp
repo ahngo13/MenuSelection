@@ -96,6 +96,7 @@
 			//data: formData,
 	        url:'/kakao/address-search?keyword='+keyword.val(),
 	        success:function(data){
+	        	jQuery('#address-list').empty();
 	        	jQuery('#address-list').append(data);
 	        	
 			   /* if(data == '200'){
@@ -111,7 +112,52 @@
     		}
 	    })
 	}
+	
+	/*
+	var totalCount              = '$!{totalRowCnt}';          
+	var loadingZoneCurrentPage  = Number(jQuery('#hospitalListLoadingZone').attr('currentpage'));
+	var rowsPerPage             = $!{rowsPerPage};
+	var loadingZoneIsMoreData   = (jQuery('#hospitalListLoadingZone').attr('ismoredata') == "true");
+	var ajaxLoding              = false;
+	var nextPage                = $!{currentPage};
 
+	function addlist(){
+	    
+	    if (loadingZoneIsMoreData && !ajaxLoding)  {
+	        loadingZoneCurrentPage++;
+	        nextPage++;
+	        ajaxLoding = true;
+	        
+	        //var paramList = [];
+	        //paramList.push("pageNo=");
+			if(nextPage == '' || nextPage == undefined){
+	        		nextPage = 1;
+	    	}
+	        
+			jQuery.ajax({
+			    type: "get",
+	            url:'/hospital-list/more?' + 'currentPage=' + nextPage ,
+				dataType: "html",
+	            success:function(data){
+			   	   jQuery('#hospitalList').append(data); //.trigger("create");
+				   ui_more.init(addlist);
+				   
+				   ajaxLoding = false; 
+				   return;
+	            },
+				error: function(jqXHR, textStatus, errorThrown) {
+	                        //jQuery('#goodsListLoadingZone').hide();
+	                        //ui_loading.detachLoading();//로딩이미지 none
+	                        alert("일시적인 장애가 발생했습니다. 잠시후에 다시 요청 하시기 바랍니다.");
+	            }
+	        })
+	        //ui_loading.attachLoading();//로딩이미지 block
+	        
+	        loadingZoneIsMoreData = (totalCount/rowsPerPage > loadingZoneCurrentPage) ? true : false;
+	    }
+	}
+	*/
+	
 </script>
 	<form action="javascript:addressSearch();" method="get">
 		<input type="text" id="keyword" name="keyword">

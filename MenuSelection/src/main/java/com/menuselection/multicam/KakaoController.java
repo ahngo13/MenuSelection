@@ -23,13 +23,13 @@ public class KakaoController {
 	@Inject
 	KakaoService service;
 	
-	//ì¹´ì¹´ì˜¤ë§µ ë©”ì¸
+	//Ä«Ä«¿À¸Ê ¸ŞÀÎ
 	@RequestMapping(value = "/kakao/main", method = RequestMethod.GET)
 	public String kakaoMain(Model model, @RequestParam(required=false) String keyword) throws Exception {
 
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
 		
-		//í‚¤ì›Œë“œ ê°’ì´ ìˆì„ ê²½ìš°
+		//Å°¿öµå °ªÀÌ ÀÖÀ» °æ¿ì
 		if(keyword != null && "".equals(keyword)){
 			KakaoBean result = helper.getKeywordMap(keyword);
 			model.addAttribute("result", result);
@@ -37,23 +37,30 @@ public class KakaoController {
 		return "kakao";
 	}
 	
-	//ì¹´ì¹´ì˜¤ë§µ ì£¼ì†Œ ê²€ìƒ‰
+	//Ä«Ä«¿À¸Ê ÁÖ¼Ò °Ë»ö
 	@RequestMapping(value = "/kakao/address-search", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView kakaoAddressSearch(HttpServletRequest request,
     		HttpServletResponse response, Model model, @RequestParam(required=false) String keyword) throws Exception {
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
 		
-		ModelAndView mv = new ModelAndView("addressList");
+		ModelAndView mv = null;
 		
-		//í‚¤ì›Œë“œ ê°’ì´ ì—†ì„ ê²½ìš°
-		if(keyword != null || "".equals(keyword)){
+		//Å°¿öµå °ªÀÌ ÀÖÀ» °æ¿ì
+		if(keyword != null && !"".equals(keyword)){
 			KakaoBean kakaoBean = helper.getAddressMap(keyword);
 			/*for(int i=0; i<kakaoBean.getDocumentList().size(); i++) {
 				kakaoBean.getDocumentList().get(i).getAddress();
 				kakaoBean.getDocumentList().get(i).getAddressName();
 			}*/
-			
+			//Áö¹øÁÖ¼Ò¿Í µµ·Î¸í ÁÖ¼Ò ±¸ºĞ
+			if(kakaoBean.getDocumentList().size()>0) {
+				if("ROAD".equals(kakaoBean.getDocumentList().get(0).getAddressType())) {
+					mv = new ModelAndView("roadAddressList");
+				}else{
+					mv = new ModelAndView("addressList");
+				}
+			}
 			mv.addObject("kakaoBean", kakaoBean);
 			mv.addObject("documentList", kakaoBean.getDocumentList());
 		}

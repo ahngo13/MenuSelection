@@ -1,26 +1,31 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <hr>
+<!-- 지번주소 리스트 -->
 <c:forEach items="${documentList}" var="list">
 <ul>
-	<li>addressName = ${list.addressName}</li>
-	<li>region1depthName = ${list.roadAddress.region1depthName}</li>
-	<li>region2depthName = ${list.roadAddress.region2depthName}</li>
-	<li>region3depthName = ${list.roadAddress.region3depthName}</li>
-	<li>roadName = ${list.roadAddress.roadName}</li>
-	<li>undergroundYn = ${list.roadAddress.undergroundYn}</li>
-	<li>mainBuildingNo = ${list.roadAddress.mainBuildingNo}</li>
-	<li>buildingName = ${list.roadAddress.buildingName}</li>
-	<li>zoneNo = ${list.roadAddress.zoneNo}</li>
-	<li>x = ${list.roadAddress.x}</li>
-	<li>y = ${list.roadAddress.y}</li>
+	<li>${list.addressName}</li>
+ 	<li>region1depthName = ${list.address.region1depthName}</li>
+	<li>region2depthName = ${list.address.region2depthName}</li>
+	<li>region3depthName = ${list.address.region3depthName}</li>
+	<li>region3depthName = ${list.address.region3depthHName}</li>
+	<li>roadName = ${list.address.hCode}</li>
+	<li>undergroundYn = ${list.address.bCode}</li>
+	<li>mainBuildingNo = ${list.address.mountainYn}</li>
+	<li>buildingName = ${list.address.mainAddressNo}</li>
+	<li>zoneNo = ${list.address.subAddressNo}</li>
+	<li>zoneNo = ${list.address.zipCode}</li>
+	<li>x = ${list.address.x}</li>
+	<li>y = ${list.address.y}</li>
 </ul>
 </c:forEach>
+<input value="이전" type="button"><input value="다음" type="button">
 <hr>
 
-kakaoBean
+ kakaoBean
 isEnd = ${kakaoBean.isEnd} <br>
 keyword = ${kakaoBean.keyword} <br>
 pageableCount = ${kakaoBean.pageableCount} <br>
 selectedRegion = ${kakaoBean.selectedRegion} <br>
-totalCount = ${kakaoBean.totalCount}
+totalCount = ${kakaoBean.totalCount} 
 </hr>
