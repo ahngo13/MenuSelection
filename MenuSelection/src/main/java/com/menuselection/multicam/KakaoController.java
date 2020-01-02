@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.menuselection.multicam.bean.KakaoBean;
 import com.menuselection.multicam.common.KakaoRestApiHelper;
 import com.menuselection.multicam.service.KakaoService;
-import com.menuselection.multicam.service.TestService;
 
 @Controller
 public class KakaoController {
@@ -25,13 +23,13 @@ public class KakaoController {
 	@Inject
 	KakaoService service;
 	
-	//Ä«Ä«¿À¸Ê ¸ŞÀÎ
+	//ì¹´ì¹´ì˜¤ë§µ ë©”ì¸
 	@RequestMapping(value = "/kakao/main", method = RequestMethod.GET)
 	public String kakaoMain(Model model, @RequestParam(required=false) String keyword) throws Exception {
 
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
 		
-		//Å°¿öµå °ªÀÌ ÀÖÀ» °æ¿ì
+		//í‚¤ì›Œë“œ ê°’ì´ ìˆì„ ê²½ìš°
 		if(keyword != null && "".equals(keyword)){
 			KakaoBean result = helper.getKeywordMap(keyword);
 			model.addAttribute("result", result);
@@ -39,7 +37,7 @@ public class KakaoController {
 		return "kakao";
 	}
 	
-	//Ä«Ä«¿À¸Ê ÁÖ¼Ò °Ë»ö
+	//ì¹´ì¹´ì˜¤ë§µ ì£¼ì†Œ ê²€ìƒ‰
 	@RequestMapping(value = "/kakao/address-search", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView kakaoAddressSearch(HttpServletRequest request,
@@ -48,7 +46,7 @@ public class KakaoController {
 		
 		ModelAndView mv = new ModelAndView("addressList");
 		
-		//Å°¿öµå °ªÀÌ ¾øÀ» °æ¿ì
+		//í‚¤ì›Œë“œ ê°’ì´ ì—†ì„ ê²½ìš°
 		if(keyword != null || "".equals(keyword)){
 			KakaoBean kakaoBean = helper.getAddressMap(keyword);
 			/*for(int i=0; i<kakaoBean.getDocumentList().size(); i++) {
