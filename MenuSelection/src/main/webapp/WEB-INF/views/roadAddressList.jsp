@@ -4,8 +4,8 @@
 <!-- 도로명주소 리스트 -->
 <c:forEach items="${documentList}" var="list">
 <ul>
-	<li>${list.addressName}</li>
- 	<li>region1depthName = ${list.roadAddress.region1depthName}</li>
+	<li onclick="javascript:addressSelect(${list.roadAddress.y}, ${list.roadAddress.x});">${list.addressName}</li>
+  	<li>region1depthName = ${list.roadAddress.region1depthName}</li>
 	<li>region2depthName = ${list.roadAddress.region2depthName}</li>
 	<li>region3depthName = ${list.roadAddress.region3depthName}</li>
 	<li>roadName = ${list.roadAddress.roadName}</li>
@@ -14,7 +14,7 @@
 	<li>buildingName = ${list.roadAddress.buildingName}</li>
 	<li>zoneNo = ${list.roadAddress.zoneNo}</li>
 	<li>x = ${list.roadAddress.x}</li>
-	<li>y = ${list.roadAddress.y}</li>
+	<li>y = ${list.roadAddress.y}</li> 
 </ul>
 </c:forEach>
 <input value="이전" type="button"><input value="다음" type="button">
@@ -26,4 +26,4 @@ keyword = ${kakaoBean.keyword} <br>
 pageableCount = ${kakaoBean.pageableCount} <br>
 selectedRegion = ${kakaoBean.selectedRegion} <br>
 totalCount = ${kakaoBean.totalCount} 
-</hr>
+<hr>

@@ -32,7 +32,7 @@ public class KakaoRestApiHelper {
     private String restApiKey = "600f124241db7f169bbb637ce49d6472";;
 	
 	/*
-	 * Ä«Ä«¿À¸Ê Ä«Å×°í¸®·Î Àå¼Ò °Ë»ö
+	 * Ä«Ä«ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	 * */
 	public KakaoBean getCategoryMap() {
 		
@@ -104,18 +104,18 @@ public class KakaoRestApiHelper {
 		for(int i=0; i < jsonArrayDocuments.size(); i++) {
 			DocumentBean documentBean = new DocumentBean();
 			JsonObject documents = (JsonObject) jsonArrayDocuments.get(i);
-			documentBean.setPlaceName(documents.get("place_name").toString());
-			documentBean.setDistance(documents.get("distance").toString());
-			documentBean.setPlaceUrl(documents.get("place_url").toString());
-			documentBean.setCategoryName(documents.get("category_name").toString());
-			documentBean.setAddressName(documents.get("address_name").toString());
-			documentBean.setRoadAddressName(documents.get("road_address_name").toString());
-			documentBean.setId(documents.get("id").toString());
-			documentBean.setPhone(documents.get("phone").toString());
-			documentBean.setCategoryGroupCode(documents.get("category_group_code").toString());
-			documentBean.setCategoryGroupName(documents.get("category_group_name").toString());
-			documentBean.setX(documents.get("x").toString());
-			documentBean.setY(documents.get("y").toString());
+			documentBean.setPlaceName(documents.get("place_name").toString().replace("\"", ""));
+			documentBean.setDistance(documents.get("distance").toString().replace("\"", ""));
+			documentBean.setPlaceUrl(documents.get("place_url").toString().replace("\"", ""));
+			documentBean.setCategoryName(documents.get("category_name").toString().replace("\"", ""));
+			documentBean.setAddressName(documents.get("address_name").toString().replace("\"", ""));
+			documentBean.setRoadAddressName(documents.get("road_address_name").toString().replace("\"", ""));
+			documentBean.setId(documents.get("id").toString().replace("\"", ""));
+			documentBean.setPhone(documents.get("phone").toString().replace("\"", ""));
+			documentBean.setCategoryGroupCode(documents.get("category_group_code").toString().replace("\"", ""));
+			documentBean.setCategoryGroupName(documents.get("category_group_name").toString().replace("\"", ""));
+			documentBean.setX(documents.get("x").toString().replace("\"", ""));
+			documentBean.setY(documents.get("y").toString().replace("\"", ""));
 			
 			documentList.add(documentBean);
 		}
@@ -127,7 +127,7 @@ public class KakaoRestApiHelper {
 	}
 	
 	/*
-	 * Ä«Ä«¿À¸Ê Å°¿öµå·Î Àå¼Ò °Ë»ö
+	 * Ä«Ä«ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	 * */
 	public KakaoBean getKeywordMap(String keyword) throws Exception{
 		
@@ -199,18 +199,18 @@ public class KakaoRestApiHelper {
 			for(int i=0; i < jsonArrayDocuments.size(); i++) {
 				DocumentBean documentBean = new DocumentBean();
 				JsonObject documents = (JsonObject) jsonArrayDocuments.get(i);
-				documentBean.setPlaceName(documents.get("place_name").toString());
-				documentBean.setDistance(documents.get("distance").toString());
-				documentBean.setPlaceUrl(documents.get("place_url").toString());
-				documentBean.setCategoryName(documents.get("category_name").toString());
-				documentBean.setAddressName(documents.get("address_name").toString());
-				documentBean.setRoadAddressName(documents.get("road_address_name").toString());
-				documentBean.setId(documents.get("id").toString());
-				documentBean.setPhone(documents.get("phone").toString());
-				documentBean.setCategoryGroupCode(documents.get("category_group_code").toString());
-				documentBean.setCategoryGroupName(documents.get("category_group_name").toString());
-				documentBean.setX(documents.get("x").toString());
-				documentBean.setY(documents.get("y").toString());
+				documentBean.setPlaceName(documents.get("place_name").toString().replace("\"", ""));
+				documentBean.setDistance(documents.get("distance").toString().replace("\"", ""));
+				documentBean.setPlaceUrl(documents.get("place_url").toString().replace("\"", ""));
+				documentBean.setCategoryName(documents.get("category_name").toString().replace("\"", ""));
+				documentBean.setAddressName(documents.get("address_name").toString().replace("\"", ""));
+				documentBean.setRoadAddressName(documents.get("road_address_name").toString().replace("\"", ""));
+				documentBean.setId(documents.get("id").toString().replace("\"", ""));
+				documentBean.setPhone(documents.get("phone").toString().replace("\"", ""));
+				documentBean.setCategoryGroupCode(documents.get("category_group_code").toString().replace("\"", ""));
+				documentBean.setCategoryGroupName(documents.get("category_group_name").toString().replace("\"", ""));
+				documentBean.setX(documents.get("x").toString().replace("\"", ""));
+				documentBean.setY(documents.get("y").toString().replace("\"", ""));
 				
 				documentList.add(documentBean);
 			}
@@ -222,7 +222,7 @@ public class KakaoRestApiHelper {
 	}
 	
 	/*
-	 * Ä«Ä«¿À¸Ê ÁÖ¼Ò °Ë»ö
+	 * Ä«Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Ë»ï¿½
 	 * */
 	public KakaoBean getAddressMap(String keyword) throws Exception{
 		
@@ -280,53 +280,55 @@ public class KakaoRestApiHelper {
 				JsonObject documentAddress = null;
 				JsonObject documentRoadAddress = null;
 				
-				if(documents.get("address") != null && !"null".equals(documents.get("address").toString()) && !"".equals(documents.get("address").toString())) {
+				String getAddress = documents.get("address").toString().replace("\"", "");			
+				if(getAddress != null && !"".equals(getAddress) && !"null".equals(getAddress)) {
 					documentAddress = (JsonObject) documents.get("address");
 				}
 				
-				if(documents.get("road_address") != null && !"".equals(documents.get("road_address").toString()) && !"null".equals(documents.get("road_address").toString())) {
+				String getRoadAddress = documents.get("road_address").toString().replace("\"", "");
+				if(getRoadAddress != null && !"".equals(getRoadAddress) && !"null".equals(getRoadAddress)) {
 					documentRoadAddress = (JsonObject) documents.get("road_address");
 				}
 				
-				documentBean.setAddressName(documents.get("address_name").toString());
-				documentBean.setAddressType(documents.get("address_type").toString());
-				documentBean.setX(documents.get("x").toString());
-				documentBean.setY(documents.get("y").toString());
+				documentBean.setAddressName(documents.get("address_name").toString().replace("\"", ""));
+				documentBean.setAddressType(documents.get("address_type").toString().replace("\"", ""));
+				documentBean.setX(documents.get("x").toString().replace("\"", ""));
+				documentBean.setY(documents.get("y").toString().replace("\"", ""));
 				
 				AddressBean address = new AddressBean();
 				RoadAddressBean roadAddress = new RoadAddressBean();
 				
 				if(documentAddress != null && !"".equals(documentAddress.toString()) && !"null".equals(documentAddress.toString())) {
-					address.setAddressName(documentAddress.get("address_name").toString());
-					address.setRegion1depthName(documentAddress.get("region_1depth_name").toString());
-					address.setRegion2depthName(documentAddress.get("region_2depth_name").toString());
-					address.setRegion3depthName(documentAddress.get("region_3depth_name").toString());
-					address.setRegion3depthHName(documentAddress.get("region_3depth_h_name").toString());
-					address.sethCode(documentAddress.get("h_code").toString());
-					address.setbCode(documentAddress.get("b_code").toString());
-					address.setMountainYn(documentAddress.get("mountain_yn").toString());
-					address.setMainAddressNo(documentAddress.get("main_address_no").toString());
-					address.setSubAddressNo(documentAddress.get("sub_address_no").toString());
-					address.setZipCode(documentAddress.get("zip_code").toString());
-					address.setX(documentAddress.get("x").toString());
-					address.setY(documentAddress.get("y").toString());
+					address.setAddressName(documentAddress.get("address_name").toString().replace("\"", ""));
+					address.setRegion1depthName(documentAddress.get("region_1depth_name").toString().replace("\"", ""));
+					address.setRegion2depthName(documentAddress.get("region_2depth_name").toString().replace("\"", ""));
+					address.setRegion3depthName(documentAddress.get("region_3depth_name").toString().replace("\"", ""));
+					address.setRegion3depthHName(documentAddress.get("region_3depth_h_name").toString().replace("\"", ""));
+					address.sethCode(documentAddress.get("h_code").toString().replace("\"", ""));
+					address.setbCode(documentAddress.get("b_code").toString().replace("\"", ""));
+					address.setMountainYn(documentAddress.get("mountain_yn").toString().replace("\"", ""));
+					address.setMainAddressNo(documentAddress.get("main_address_no").toString().replace("\"", ""));
+					address.setSubAddressNo(documentAddress.get("sub_address_no").toString().replace("\"", ""));
+					address.setZipCode(documentAddress.get("zip_code").toString().replace("\"", ""));
+					address.setX(documentAddress.get("x").toString().replace("\"", ""));
+					address.setY(documentAddress.get("y").toString().replace("\"", ""));
 					
 					documentBean.setAddress(address);
 				}
 				
 				if(documentRoadAddress != null && !"".equals(documentRoadAddress.toString()) && !"null".equals(documentRoadAddress.toString())) {
-					roadAddress.setAddressName(documentRoadAddress.get("address_name").toString());
-					roadAddress.setRegion1depthName(documentRoadAddress.get("region_1depth_name").toString());
-					roadAddress.setRegion2depthName(documentRoadAddress.get("region_2depth_name").toString());
-					roadAddress.setRegion3depthName(documentRoadAddress.get("region_3depth_name").toString());
-					roadAddress.setRoadName(documentRoadAddress.get("road_name").toString());
-					roadAddress.setUndergroundYn(documentRoadAddress.get("underground_yn").toString());
-					roadAddress.setMainBuildingNo(documentRoadAddress.get("main_building_no").toString());
-					roadAddress.setSubBuildingNo(documentRoadAddress.get("sub_building_no").toString());
-					roadAddress.setBuildingName(documentRoadAddress.get("building_name").toString());
-					roadAddress.setZoneNo(documentRoadAddress.get("zone_no").toString());
-					roadAddress.setX(documentRoadAddress.get("x").toString());
-					roadAddress.setY(documentRoadAddress.get("y").toString());
+					roadAddress.setAddressName(documentRoadAddress.get("address_name").toString().replace("\"", ""));
+					roadAddress.setRegion1depthName(documentRoadAddress.get("region_1depth_name").toString().replace("\"", ""));
+					roadAddress.setRegion2depthName(documentRoadAddress.get("region_2depth_name").toString().replace("\"", ""));
+					roadAddress.setRegion3depthName(documentRoadAddress.get("region_3depth_name").toString().replace("\"", ""));
+					roadAddress.setRoadName(documentRoadAddress.get("road_name").toString().replace("\"", ""));
+					roadAddress.setUndergroundYn(documentRoadAddress.get("underground_yn").toString().replace("\"", ""));
+					roadAddress.setMainBuildingNo(documentRoadAddress.get("main_building_no").toString().replace("\"", ""));
+					roadAddress.setSubBuildingNo(documentRoadAddress.get("sub_building_no").toString().replace("\"", ""));
+					roadAddress.setBuildingName(documentRoadAddress.get("building_name").toString().replace("\"", ""));
+					roadAddress.setZoneNo(documentRoadAddress.get("zone_no").toString().replace("\"", ""));
+					roadAddress.setX(documentRoadAddress.get("x").toString().replace("\"", ""));
+					roadAddress.setY(documentRoadAddress.get("y").toString().replace("\"", ""));
 					
 					documentBean.setRoadAddress(roadAddress);
 				}
