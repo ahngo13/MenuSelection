@@ -32,7 +32,7 @@ public class KakaoRestApiHelper {
     private String restApiKey = "600f124241db7f169bbb637ce49d6472";;
 	
 	/*
-	 * īī���� ī�װ��� ��� �˻�
+	 * 카카오맵 카테고리로 장소 검색
 	 * */
 	public KakaoBean getCategoryMap() {
 		
@@ -127,7 +127,7 @@ public class KakaoRestApiHelper {
 	}
 	
 	/*
-	 * īī���� Ű����� ��� �˻�
+	 * 카카오맵 키워드로 장소 검색
 	 * */
 	public KakaoBean getKeywordMap(String keyword) throws Exception{
 		
@@ -222,7 +222,7 @@ public class KakaoRestApiHelper {
 	}
 	
 	/*
-	 * īī���� �ּ� �˻�
+	 * 카카오맵 주소 검색
 	 * */
 	public KakaoBean getAddressMap(String keyword) throws Exception{
 		
