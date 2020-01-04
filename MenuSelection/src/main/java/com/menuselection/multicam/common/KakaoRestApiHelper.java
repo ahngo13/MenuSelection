@@ -224,11 +224,11 @@ public class KakaoRestApiHelper {
 	/*
 	 * 카카오맵 주소 검색
 	 * */
-	public KakaoBean getAddressMap(String keyword) throws Exception{
+	public KakaoBean getAddressMap(String keyword, int page) throws Exception{
 		
 			KakaoBean kakaoBean = new KakaoBean();	
 		
-	        String queryString = "?query="+URLEncoder.encode(keyword, "UTF-8") +"&page=1"+"&size=30";
+	        String queryString = "?query="+URLEncoder.encode(keyword, "UTF-8") +"&page="+page+"&size=10";
 	        RestTemplate restTemplate = new RestTemplate();
 	        HttpHeaders headers = new HttpHeaders();
 

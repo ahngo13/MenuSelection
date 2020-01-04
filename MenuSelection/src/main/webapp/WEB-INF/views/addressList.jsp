@@ -11,17 +11,24 @@
 	<li>region2depthName = ${list.address.region2depthName}</li>
 	<li>region3depthName = ${list.address.region3depthName}</li>
 	<li>region3depthName = ${list.address.region3depthHName}</li>
-	<li>roadName = ${list.address.hCode}</li>
-	<li>undergroundYn = ${list.address.bCode}</li>
-	<li>mainBuildingNo = ${list.address.mountainYn}</li>
-	<li>buildingName = ${list.address.mainAddressNo}</li>
-	<li>zoneNo = ${list.address.subAddressNo}</li>
-	<li>zoneNo = ${list.address.zipCode}</li>
+	<li>hCode = ${list.address.hCode}</li>
+	<li>bCode = ${list.address.bCode}</li>
+	<li>mountainYn = ${list.address.mountainYn}</li>
+	<li>mainAddressNo = ${list.address.mainAddressNo}</li>
+	<li>subAddressNo = ${list.address.subAddressNo}</li>
+	<li>zipCode = ${list.address.zipCode}</li>
 	<li>x = ${list.address.x}</li>
 	<li>y = ${list.address.y}</li> 
 </ul>
 </c:forEach>
-<input value="이전" type="button"><input value="다음" type="button">
+
+<c:if test="${page > '1'}">
+<input value="이전" type="button" onclick="javascript:addressSearch('back');">
+</c:if>
+<c:if test="${kakaoBean.isEnd == false}">
+<input value="다음" type="button" onclick="javascript:addressSearch('next');">
+</c:if>
+<input type="hidden" id="page" value="${page}">
 <hr>
 
 kakaoBean

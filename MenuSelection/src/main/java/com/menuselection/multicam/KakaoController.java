@@ -23,13 +23,13 @@ public class KakaoController {
 	@Inject
 	KakaoService service;
 	
-	//Ä«Ä«¿À¸Ê ¸ŞÀÎ
+	//ì¹´ì¹´ì˜¤ë§µ ë©”ì¸
 	@RequestMapping(value = "/kakao/main", method = RequestMethod.GET)
 	public String kakaoMain(Model model, @RequestParam(required=false) String keyword) throws Exception {
 
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
 		
-		//Å°¿öµå °ªÀÌ ÀÖÀ» °æ¿ì
+		//í‚¤ì›Œë“œ ê°’ì´ ìˆì„ ê²½ìš°
 		if(keyword != null && "".equals(keyword)){
 			KakaoBean result = helper.getKeywordMap(keyword);
 			model.addAttribute("result", result);
@@ -37,23 +37,25 @@ public class KakaoController {
 		return "kakao";
 	}
 	
-	//Ä«Ä«¿À¸Ê ÁÖ¼Ò °Ë»ö
+	//ì¹´ì¹´ì˜¤ë§µ ì£¼ì†Œ ê²€ìƒ‰
 	@RequestMapping(value = "/kakao/address-search", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView kakaoAddressSearch(HttpServletRequest request,
-    		HttpServletResponse response, Model model, @RequestParam(required=false) String keyword) throws Exception {
+    		HttpServletResponse response, Model model, 
+    		@RequestParam(required=false) String keyword,
+    		@RequestParam(required=false, defaultValue = "1") int page) throws Exception {
 		KakaoRestApiHelper helper = new KakaoRestApiHelper();
 		
 		ModelAndView mv = null;
 		
-		//Å°¿öµå °ªÀÌ ÀÖÀ» °æ¿ì
+		//í‚¤ì›Œë“œ ê°’ì´ ìˆì„ ê²½ìš°
 		if(keyword != null && !"".equals(keyword)){
-			KakaoBean kakaoBean = helper.getAddressMap(keyword);
+			KakaoBean kakaoBean = helper.getAddressMap(keyword, page);
 			/*for(int i=0; i<kakaoBean.getDocumentList().size(); i++) {
 				kakaoBean.getDocumentList().get(i).getAddress();
 				kakaoBean.getDocumentList().get(i).getAddressName();
 			}*/
-			//Áö¹øÁÖ¼Ò¿Í µµ·Î¸í ÁÖ¼Ò ±¸ºĞ
+			//ì§€ë²ˆì£¼ì†Œì™€ ë„ë¡œëª… ì£¼ì†Œ êµ¬ë¶„
 			if(kakaoBean.getDocumentList().size()>0) {
 				if("ROAD".equals(kakaoBean.getDocumentList().get(0).getAddressType())) {
 					mv = new ModelAndView("roadAddressList");
@@ -63,6 +65,7 @@ public class KakaoController {
 			}
 			mv.addObject("kakaoBean", kakaoBean);
 			mv.addObject("documentList", kakaoBean.getDocumentList());
+			mv.addObject("page", page);
 		}
 		
 		return mv;

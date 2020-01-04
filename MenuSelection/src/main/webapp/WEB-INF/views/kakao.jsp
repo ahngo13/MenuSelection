@@ -77,8 +77,17 @@
 	    map.setCenter(locPosition);      
 	}   
 
-	function addressSearch(){
+	function addressSearch(beforeNextGb){
 		var keyword = jQuery('#keyword');
+		var page = Number.parseInt(jQuery('#page').val());
+	
+		if(beforeNextGb == 'back'){
+			page--;
+		}else if(beforeNextGb == 'next'){
+			page++;
+		}else{
+			page = 1;
+		}
 		
 		if(keyword.val() == '' || keyword.val() == undefined){
 			alert('주소를 입력 해주세요.');
@@ -94,7 +103,7 @@
 		jQuery.ajax({
 		    type: "get",
 			//data: formData,
-	        url:'/kakao/address-search?keyword='+keyword.val(),
+	        url:'/kakao/address-search?keyword='+keyword.val()+'&page='+page,
 	        success:function(data){
 	        	jQuery('#address-list').empty();
 	        	jQuery('#address-list').append(data);
