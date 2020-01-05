@@ -179,14 +179,11 @@
 	*/
 	
 </script>
-	<form action="javascript:addressSearch();" method="get">
-		<input type="text" >
-		<div class="form-group">
-		    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" class="form-control" />
-		</div>  
-		<button class="btn btn-primary" type="submit" value="주소 검색"></button>
-		<div id="address-list"></div>
-	</form>
+	<div class="form-group">
+	    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" class="form-control" />
+	</div>  
+	<button class="btn btn-primary" onclick="javascript:addressSearch();">주소 검색</button>
+	<div id="address-list"></div>
 	
 	<h2>키워드 검색</h2>
 		region = ${result.region}<br>
