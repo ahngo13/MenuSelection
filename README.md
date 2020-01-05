@@ -2,15 +2,23 @@
 
 ### 개발환경
 
+OS : Windows 10
+
+Web Browser : Google Chrome
+
 IDE : Spring Tool Suite 3 Version: 3.9.11.RELEASE
 
-Language : Java (JDK 1.8.0_231)
+Language : Java (JDK 1.8.0_231), javascirpt, JSP
+
+Skill : Ajax, CSS
 
 Server : Tomcat 8.0
 
-Framework : Spring, Mybatis
+Framework : Spring, Mybatis, JQuery, Bootstrap
 
-DB : MariaDB 10.4
+DBMS : MariaDB 10.4
+
+Configuration Management : Git
 
 
 
@@ -49,3 +57,11 @@ var param = encodeURIComponent("파라미터");
 PC Web에서 현재위치를 가져올 때 geolocation API를 사용하는데 정확성이 떨어지는 것으로 확인됨.
 
 키워드로 검색해서 주변 음식점을 검색하는 것으로 개발 추진해야할 것으로 보임.
+
+
+
+#### 부트스트랩 컴포넌트 사용 방법
+
+참고해서 디자인하는데 활용하면 됨
+
+https://demos.creative-tim.com/get-shit-done/components.html
