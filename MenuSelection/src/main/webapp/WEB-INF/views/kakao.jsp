@@ -2,9 +2,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
+
+<%@include file ="/views/common/header.jsp" %>
+
 <body>
 <center>
 <h1>Kakao Map</h1>
@@ -211,4 +211,7 @@
 				
 		
 </body>
+
+<%@include file ="/views/common/footer.jsp" %>
+
 </html>

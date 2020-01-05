@@ -1,24 +1,8 @@
 <!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="/resources/assets/img/apple-icon.png">
-	<link rel="icon" type="/resources/image/png" href="/resources/assets/img/favicon.png">	
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Get Shit Done Kit by Creative Tim</title>
+<html>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-	
-    <link href="/resources/bootstrap3/css/bootstrap.css" rel="stylesheet" />
-	<link href="/resources/assets/css/gsdk.css" rel="stylesheet" />  
-    <link href="/resources/assets/css/demo.css" rel="stylesheet" /> 
-    
-    <!--     Font Awesome     -->
-    <link href="/resources/bootstrap3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
-</head>
+<%@include file ="/views/common/header.jsp" %>
+
 <body>
 <div id="navbar-full">
     <div class="container">
@@ -48,7 +32,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                    <li><a href="components.html">Components</a></li>
+                    <li><a href="/resources/components.html">Components</a></li>
                     
                     <li><a href="http://www.creative-tim.com/product/get-shit-done-kit" class="btn btn-round btn-default">Download</a></li>
                </ul>
@@ -64,8 +48,8 @@
             <div class="border no-right-border">Sh</div><div class="border">it</div>
             <div>Done</div>
         </div>
-        <div class="img-src" style="background-image: url('assets/img/cover_4.jpg')"></div>
-        <div class='img-src blur' style="background-image: url('assets/img/cover_4_blur.jpg')"></div>
+        <div class="img-src" style="background-image: url('/resources/assets/img/cover_4.jpg')"></div>
+        <div class='img-src blur' style="background-image: url('/resources/assets/img/cover_4_blur.jpg')"></div>
     </div>
     
 </div>     
@@ -281,7 +265,7 @@
         </div> <!-- end menu-dropdown -->
         <div class="tim-title">
         <h3>Transparent Navigation
-             <a href="navbar-transparent.html" target="_blank" class="btn btn-info btn-fill">Live Preview</a>
+             <a href="/resources/navbar-transparent.html" target="_blank" class="btn btn-info btn-fill">Live Preview</a>
         </h3>
 
 
@@ -339,7 +323,7 @@
 
           </div><!-- /.container-fluid -->
         </nav>        
-            <div class="img-src" style="background-image: url('assets/img/bg.jpg')"></div>
+            <div class="img-src" style="background-image: url('/resources/assets/img/bg.jpg')"></div>
         </div>
     </div><!--  end navbar -->
 
@@ -826,47 +810,6 @@
 
 </body>
 
-    <script src="/resources/jquery/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="/resources/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<%@include file ="/views/common/footer.jsp" %>
 
-	<script src="/resources/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
-	<script src="/resources/assets/js/gsdk-checkbox.js"></script>
-	<script src="/resources/assets/js/gsdk-radio.js"></script>
-	<script src="/resources/assets/js/gsdk-bootstrapswitch.js"></script>
-	<script src="/resources/assets/js/get-shit-done.js"></script>
-    <script src="/resources/assets/js/custom.js"></script>
-
-<script type="text/javascript">
-         
-    $('.btn-tooltip').tooltip();
-    $('.label-tooltip').tooltip();
-    $('.pick-class-label').click(function(){
-        var new_class = $(this).attr('new-class');  
-        var old_class = $('#display-buttons').attr('data-class');
-        var display_div = $('#display-buttons');
-        if(display_div.length) {
-        var display_buttons = display_div.find('.btn');
-        display_buttons.removeClass(old_class);
-        display_buttons.addClass(new_class);
-        display_div.attr('data-class', new_class);
-        }
-    });
-    $( "#slider-range" ).slider({
-		range: true,
-		min: 0,
-		max: 500,
-		values: [ 75, 300 ],
-	});
-	$( "#slider-default" ).slider({
-			value: 70,
-			orientation: "horizontal",
-			range: "min",
-			animate: true
-	});
-	$('.carousel').carousel({
-      interval: 4000
-    });
-      
-    
-</script>
 </html>
