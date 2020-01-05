@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 
-<%@include file ="/views/common/header.jsp" %>
+<%@include file ="/WEB-INF/views/common/header.jsp" %>
 
 <body>
 <div id="navbar-full">
@@ -810,6 +810,6 @@
 
 </body>
 
-<%@include file ="/views/common/footer.jsp" %>
+<%@include file ="/WEB-INF/views/common/footer.jsp" %>
 
 </html>
