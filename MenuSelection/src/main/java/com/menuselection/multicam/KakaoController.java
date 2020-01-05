@@ -71,6 +71,28 @@ public class KakaoController {
 		return mv;
 	}
 	
+	//카카오맵 카테고리 검색
+		@RequestMapping(value = "/kakao/category-search", method = RequestMethod.GET)
+		@ResponseBody
+		public ModelAndView kakaoCategorySearch(HttpServletRequest request,
+	    		HttpServletResponse response, Model model, 
+	    		@RequestParam(required=true) String x,
+	    		@RequestParam(required=true) String y,
+	    		@RequestParam(required=true, defaultValue = "2000") String radius,
+	    		@RequestParam(required=false, defaultValue = "1") int page) throws Exception {
+			KakaoRestApiHelper helper = new KakaoRestApiHelper();
+			
+			ModelAndView mv = null;
+			
+				KakaoBean kakaoBean = helper.getCategoryMap(x, y, Integer.parseInt(radius));
+				mv = new ModelAndView("placeList");
+				
+				mv.addObject("placeBean", kakaoBean);
+				mv.addObject("placeList", kakaoBean.getDocumentList());
+			
+			return mv;
+		}
+	
 	/* @RequestMapping(value="/hospital-list")
 	    public ModelAndView getHospitalList(HttpServletRequest request, HttpServletResponse response,
 	    		@RequestParam(value="currentPage", defaultValue ="1" ) int currentPage,

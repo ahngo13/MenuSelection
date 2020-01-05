@@ -34,11 +34,11 @@ public class KakaoRestApiHelper {
 	/*
 	 * 카카오맵 카테고리로 장소 검색
 	 * */
-	public KakaoBean getCategoryMap() {
+	public KakaoBean getCategoryMap(String x, String y, int radius) {
 		
 		KakaoBean kakaoBean = new KakaoBean();	
 		
-        String queryString = "?category_group_code=FD6"; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
+        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y+"ract="+""; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
@@ -54,43 +54,45 @@ public class KakaoRestApiHelper {
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(re.getBody());
 		JsonArray jsonArrayDocuments = (JsonArray) jsonObject.get("documents");
 		JsonObject meta = (JsonObject)jsonObject.get("meta");
-		JsonObject sameName = (JsonObject) meta.get("same_name");
-		
 		
 		int pageableCount = 0;
-		if(meta.get("pageable_count") != null && !"".equals(meta.get("pageable_count").toString())){
+		if(meta.get("pageable_count") != null && !"".equals(meta.get("pageable_count").toString()) && !"null".equals(meta.get("pageable_count").toString())){
 			pageableCount = Integer.parseInt(meta.get("pageable_count").toString());
 		}
 		
 		int totalCount = 0; 
-		if(meta.get("total_count") != null && !"".equals(meta.get("total_count").toString())) {
+		if(meta.get("total_count") != null && !"".equals(meta.get("total_count").toString()) && !"null".equals(meta.get("total_count").toString())) {
 			totalCount = Integer.parseInt(meta.get("total_count").toString());
 		}
 		String isEndToString = "";
-		if(meta.get("is_end") != null && !"".equals(meta.get("is_end").toString())) {
+		if(meta.get("is_end") != null && !"".equals(meta.get("is_end").toString()) && !"null".equals(meta.get("is_end").toString())) {
 			isEndToString = meta.get("is_end").toString();
 		}
 
-
-		String keywordName = "";
-		if(sameName.get("keyword") != null && !"".equals(sameName.get("keyword").toString())) {
-			keywordName = sameName.get("keyword").toString();
-		}
-		String selectedRegion = "";
-		if(sameName.get("selected_region") != null && !"".equals(sameName.get("selected_region").toString())) {
-			selectedRegion = sameName.get("selected_region").toString();
-		}
-		String region = ""; 
-		if(sameName.get("region") != null && !"".equals(sameName.get("region").toString())) {
-			region = sameName.get("region").toString();
-		}
-		Boolean isEnd;
+		if(meta.get("same_name") != null && !"".equals(meta.get("same_name").toString()) && !"null".equals(meta.get("same_name").toString())) {
+			JsonObject sameName = (JsonObject) meta.get("same_name");
 		
-		kakaoBean.setRegion(region);			
-		kakaoBean.setKeyword(keywordName);			
-		kakaoBean.setSelectedRegion(selectedRegion);	
+			String keywordName = "";
+			if(sameName.get("keyword") != null && !"".equals(sameName.get("keyword").toString())) {
+				keywordName = sameName.get("keyword").toString();
+			}
+			String selectedRegion = "";
+			if(sameName.get("selected_region") != null && !"".equals(sameName.get("selected_region").toString())) {
+				selectedRegion = sameName.get("selected_region").toString();
+			}
+			String region = ""; 
+			if(sameName.get("region") != null && !"".equals(sameName.get("region").toString())) {
+				region = sameName.get("region").toString();
+			}
+			
+			kakaoBean.setRegion(region);			
+			kakaoBean.setKeyword(keywordName);			
+			kakaoBean.setSelectedRegion(selectedRegion);	
+		}
 		kakaoBean.setPageableCount(pageableCount);
 		kakaoBean.setTotalCount(totalCount);
+		
+		Boolean isEnd;
 		if("true".equals(isEndToString)){
 			isEnd = true;
 		}else{

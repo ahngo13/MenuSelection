@@ -19,7 +19,7 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 10 // 지도의 확대 레벨 
+	        level: 3 // 지도의 확대 레벨 
 	    }; 
 	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -125,10 +125,33 @@
  	function addressSelect(x, y){
 		
 		var locPosition = new kakao.maps.LatLng(x, y); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		var message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-        
+		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+		
+		jQuery('#address-list').empty();
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
+        
+        //카테고리 검색 시작
+        jQuery.ajax({
+		    type: "get",
+			//data: formData,
+	        url:'/kakao/category-search?x='+x+'&y='+y,
+	        success:function(data){
+	        	jQuery('#place-list').empty();
+	        	jQuery('#place-list').append(data);
+	        	
+			   /* if(data == '200'){
+				   alert('200');
+				   //goURL('/member/join-success');
+				   return;
+			   } */
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+                //jQuery('#goodsListLoadingZone').hide();
+                //ui_loading.detachLoading();//로딩이미지 none
+                alert("일시적인 장애가 발생했습니다. 잠시후에 다시 요청 하시기 바랍니다.");
+    		}
+	    })
 	} 
 	 
 
@@ -184,8 +207,9 @@
 	</div>  
 	<button class="btn btn-primary" onclick="javascript:addressSearch();">주소 검색</button>
 	<div id="address-list"></div>
+	<div id="place-list"></div>
 	
-	<h2>키워드 검색</h2>
+	<h2>키워드 검색 결과</h2>
 		region = ${result.region}<br>
 		keyword = ${result.keyword}<br>
 		selectedRegion = ${result.selectedRegion}<br>
