@@ -122,7 +122,7 @@
 	    })
 	}
 	
- 	function addressSelect(x, y){
+ 	function addressSelect(y, x){
 		
 		var locPosition = new kakao.maps.LatLng(x, y); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다

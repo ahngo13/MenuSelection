@@ -4,15 +4,11 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.JsonArray;
@@ -38,7 +34,7 @@ public class KakaoRestApiHelper {
 		
 		KakaoBean kakaoBean = new KakaoBean();	
 		
-        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y+"ract="+""; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
+        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y+""; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
