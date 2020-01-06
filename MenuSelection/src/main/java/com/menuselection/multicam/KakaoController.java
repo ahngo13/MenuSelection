@@ -78,7 +78,7 @@ public class KakaoController {
 	    		HttpServletResponse response, Model model, 
 	    		@RequestParam(required=true) String x,
 	    		@RequestParam(required=true) String y,
-	    		@RequestParam(required=true, defaultValue = "2000") String radius,
+	    		@RequestParam(required=true, defaultValue = "500") String radius,
 	    		@RequestParam(required=false, defaultValue = "1") int page) throws Exception {
 			KakaoRestApiHelper helper = new KakaoRestApiHelper();
 			

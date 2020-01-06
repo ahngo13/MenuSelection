@@ -124,10 +124,13 @@
 	
  	function addressSelect(y, x){
 		
-		var locPosition = new kakao.maps.LatLng(x, y); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		var locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 		
 		jQuery('#address-list').empty();
+		jQuery('#searchX').val(x);
+		jQuery('#searchY').val(y);
+		
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
         
@@ -153,53 +156,21 @@
     		}
 	    })
 	} 
-	 
-
+ 	
+ 	
+	function placeSelect(y, x){
+		
+		var locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+		var searchX = jQuery('#searchX').val();
+		var searchY = jQuery('#searchY').val();
+		
+		jQuery('#place-list').empty();
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+        
+	} 
 	
-	/*
-	var totalCount              = '$!{totalRowCnt}';          
-	var loadingZoneCurrentPage  = Number(jQuery('#hospitalListLoadingZone').attr('currentpage'));
-	var rowsPerPage             = $!{rowsPerPage};
-	var loadingZoneIsMoreData   = (jQuery('#hospitalListLoadingZone').attr('ismoredata') == "true");
-	var ajaxLoding              = false;
-	var nextPage                = $!{currentPage};
-
-	function addlist(){
-	    
-	    if (loadingZoneIsMoreData && !ajaxLoding)  {
-	        loadingZoneCurrentPage++;
-	        nextPage++;
-	        ajaxLoding = true;
-	        
-	        //var paramList = [];
-	        //paramList.push("pageNo=");
-			if(nextPage == '' || nextPage == undefined){
-	        		nextPage = 1;
-	    	}
-	        
-			jQuery.ajax({
-			    type: "get",
-	            url:'/hospital-list/more?' + 'currentPage=' + nextPage ,
-				dataType: "html",
-	            success:function(data){
-			   	   jQuery('#hospitalList').append(data); //.trigger("create");
-				   ui_more.init(addlist);
-				   
-				   ajaxLoding = false; 
-				   return;
-	            },
-				error: function(jqXHR, textStatus, errorThrown) {
-	                        //jQuery('#goodsListLoadingZone').hide();
-	                        //ui_loading.detachLoading();//로딩이미지 none
-	                        alert("일시적인 장애가 발생했습니다. 잠시후에 다시 요청 하시기 바랍니다.");
-	            }
-	        })
-	        //ui_loading.attachLoading();//로딩이미지 block
-	        
-	        loadingZoneIsMoreData = (totalCount/rowsPerPage > loadingZoneCurrentPage) ? true : false;
-	    }
-	}
-	*/
 	
 </script>
 	<div class="form-group">
@@ -208,7 +179,9 @@
 	<button class="btn btn-primary" onclick="javascript:addressSearch();">주소 검색</button>
 	<div id="address-list"></div>
 	<div id="place-list"></div>
-	
+	<input type="hidden" id="searchX">
+	<input type="hidden" id="searchY">
+	 
 	<h2>키워드 검색 결과</h2>
 		region = ${result.region}<br>
 		keyword = ${result.keyword}<br>

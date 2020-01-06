@@ -26,6 +26,7 @@ public class KakaoRestApiHelper {
     private static final String SEARCH_PLACE_ADDRESS_PATH = "/v2/local/search/address.json";
     private static final String SEARCH_PLACE__CATEGORY_ADDRESS_PATH = "/v2/local/search/category.json";
     private String restApiKey = "600f124241db7f169bbb637ce49d6472";;
+    private static String isEndToString = "false";
 	
 	/*
 	 * 카카오맵 카테고리로 장소 검색
@@ -34,91 +35,96 @@ public class KakaoRestApiHelper {
 		
 		KakaoBean kakaoBean = new KakaoBean();	
 		
-        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y+""; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
+        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-
+        ArrayList<DocumentBean> documentList = new ArrayList<DocumentBean>();
+        
         headers.add("Authorization", "KakaoAK " + restApiKey);
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
-        URI url = URI.create(API_SERVER_HOST+SEARCH_PLACE__CATEGORY_ADDRESS_PATH+queryString);
-        RequestEntity<String> rq = new RequestEntity<>(headers, HttpMethod.GET, url);
-        ResponseEntity<String> re = restTemplate.exchange(rq, String.class);
+        int page = 1;
         
-        JsonParser jsonParser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) jsonParser.parse(re.getBody());
-		JsonArray jsonArrayDocuments = (JsonArray) jsonObject.get("documents");
-		JsonObject meta = (JsonObject)jsonObject.get("meta");
-		
-		int pageableCount = 0;
-		if(meta.get("pageable_count") != null && !"".equals(meta.get("pageable_count").toString()) && !"null".equals(meta.get("pageable_count").toString())){
-			pageableCount = Integer.parseInt(meta.get("pageable_count").toString());
-		}
-		
-		int totalCount = 0; 
-		if(meta.get("total_count") != null && !"".equals(meta.get("total_count").toString()) && !"null".equals(meta.get("total_count").toString())) {
-			totalCount = Integer.parseInt(meta.get("total_count").toString());
-		}
-		String isEndToString = "";
-		if(meta.get("is_end") != null && !"".equals(meta.get("is_end").toString()) && !"null".equals(meta.get("is_end").toString())) {
-			isEndToString = meta.get("is_end").toString();
-		}
-
-		if(meta.get("same_name") != null && !"".equals(meta.get("same_name").toString()) && !"null".equals(meta.get("same_name").toString())) {
-			JsonObject sameName = (JsonObject) meta.get("same_name");
-		
-			String keywordName = "";
-			if(sameName.get("keyword") != null && !"".equals(sameName.get("keyword").toString())) {
-				keywordName = sameName.get("keyword").toString();
-			}
-			String selectedRegion = "";
-			if(sameName.get("selected_region") != null && !"".equals(sameName.get("selected_region").toString())) {
-				selectedRegion = sameName.get("selected_region").toString();
-			}
-			String region = ""; 
-			if(sameName.get("region") != null && !"".equals(sameName.get("region").toString())) {
-				region = sameName.get("region").toString();
+        //최대 45개까지만 조회 가능하고  거리를 줄이거나 카테고리명으로 분류하거나 해서 목록 수를 줄여야 할 것으로 보임.
+        while("false".equals(isEndToString)) {
+	        URI url = URI.create(API_SERVER_HOST+SEARCH_PLACE__CATEGORY_ADDRESS_PATH + queryString + "&page=" + page);
+	        page++;
+	        RequestEntity<String> rq = new RequestEntity<>(headers, HttpMethod.GET, url);
+	        ResponseEntity<String> re = restTemplate.exchange(rq, String.class);
+	        
+	        JsonParser jsonParser = new JsonParser();
+			JsonObject jsonObject = (JsonObject) jsonParser.parse(re.getBody());
+			JsonArray jsonArrayDocuments = (JsonArray) jsonObject.get("documents");
+			JsonObject meta = (JsonObject)jsonObject.get("meta");
+			
+			int pageableCount = 0;
+			if(meta.get("pageable_count") != null && !"".equals(meta.get("pageable_count").toString()) && !"null".equals(meta.get("pageable_count").toString())){
+				pageableCount = Integer.parseInt(meta.get("pageable_count").toString());
 			}
 			
-			kakaoBean.setRegion(region);			
-			kakaoBean.setKeyword(keywordName);			
-			kakaoBean.setSelectedRegion(selectedRegion);	
-		}
-		kakaoBean.setPageableCount(pageableCount);
-		kakaoBean.setTotalCount(totalCount);
-		
-		Boolean isEnd;
-		if("true".equals(isEndToString)){
-			isEnd = true;
-		}else{
-			isEnd = false;
-		}
-		kakaoBean.setIsEnd(isEnd);
-		
-		
-		ArrayList<DocumentBean> documentList = new ArrayList<DocumentBean>();
-
-		for(int i=0; i < jsonArrayDocuments.size(); i++) {
-			DocumentBean documentBean = new DocumentBean();
-			JsonObject documents = (JsonObject) jsonArrayDocuments.get(i);
-			documentBean.setPlaceName(documents.get("place_name").toString().replace("\"", ""));
-			documentBean.setDistance(documents.get("distance").toString().replace("\"", ""));
-			documentBean.setPlaceUrl(documents.get("place_url").toString().replace("\"", ""));
-			documentBean.setCategoryName(documents.get("category_name").toString().replace("\"", ""));
-			documentBean.setAddressName(documents.get("address_name").toString().replace("\"", ""));
-			documentBean.setRoadAddressName(documents.get("road_address_name").toString().replace("\"", ""));
-			documentBean.setId(documents.get("id").toString().replace("\"", ""));
-			documentBean.setPhone(documents.get("phone").toString().replace("\"", ""));
-			documentBean.setCategoryGroupCode(documents.get("category_group_code").toString().replace("\"", ""));
-			documentBean.setCategoryGroupName(documents.get("category_group_name").toString().replace("\"", ""));
-			documentBean.setX(documents.get("x").toString().replace("\"", ""));
-			documentBean.setY(documents.get("y").toString().replace("\"", ""));
+			int totalCount = 0; 
+			if(meta.get("total_count") != null && !"".equals(meta.get("total_count").toString()) && !"null".equals(meta.get("total_count").toString())) {
+				totalCount = Integer.parseInt(meta.get("total_count").toString());
+			}
 			
-			documentList.add(documentBean);
+			if(meta.get("is_end") != null && !"".equals(meta.get("is_end").toString()) && !"null".equals(meta.get("is_end").toString())) {
+				isEndToString = meta.get("is_end").toString();
+			}
+	
+			if(meta.get("same_name") != null && !"".equals(meta.get("same_name").toString()) && !"null".equals(meta.get("same_name").toString())) {
+				JsonObject sameName = (JsonObject) meta.get("same_name");
+			
+				String keywordName = "";
+				if(sameName.get("keyword") != null && !"".equals(sameName.get("keyword").toString())) {
+					keywordName = sameName.get("keyword").toString();
+				}
+				String selectedRegion = "";
+				if(sameName.get("selected_region") != null && !"".equals(sameName.get("selected_region").toString())) {
+					selectedRegion = sameName.get("selected_region").toString();
+				}
+				String region = ""; 
+				if(sameName.get("region") != null && !"".equals(sameName.get("region").toString())) {
+					region = sameName.get("region").toString();
+				}
+				
+				kakaoBean.setRegion(region);			
+				kakaoBean.setKeyword(keywordName);			
+				kakaoBean.setSelectedRegion(selectedRegion);	
+			}
+			kakaoBean.setPageableCount(pageableCount);
+			kakaoBean.setTotalCount(totalCount);
+			
+			Boolean isEnd;
+			if("true".equals(isEndToString)){
+				isEnd = true;
+			}else{
+				isEnd = false;
+			}
+			kakaoBean.setIsEnd(isEnd);
+			
+			for(int i=0; i < jsonArrayDocuments.size(); i++) {
+				DocumentBean documentBean = new DocumentBean();
+				JsonObject documents = (JsonObject) jsonArrayDocuments.get(i);
+				documentBean.setPlaceName(documents.get("place_name").toString().replace("\"", ""));
+				documentBean.setDistance(documents.get("distance").toString().replace("\"", ""));
+				documentBean.setPlaceUrl(documents.get("place_url").toString().replace("\"", ""));
+				documentBean.setCategoryName(documents.get("category_name").toString().replace("\"", ""));
+				documentBean.setAddressName(documents.get("address_name").toString().replace("\"", ""));
+				documentBean.setRoadAddressName(documents.get("road_address_name").toString().replace("\"", ""));
+				documentBean.setId(documents.get("id").toString().replace("\"", ""));
+				documentBean.setPhone(documents.get("phone").toString().replace("\"", ""));
+				documentBean.setCategoryGroupCode(documents.get("category_group_code").toString().replace("\"", ""));
+				documentBean.setCategoryGroupName(documents.get("category_group_name").toString().replace("\"", ""));
+				documentBean.setX(documents.get("x").toString().replace("\"", ""));
+				documentBean.setY(documents.get("y").toString().replace("\"", ""));
+				
+				documentList.add(documentBean);
+			}
 		}
 		
 		kakaoBean.setDocumentList(documentList);
+		isEndToString = "false";
 		
 		return kakaoBean;
 		
