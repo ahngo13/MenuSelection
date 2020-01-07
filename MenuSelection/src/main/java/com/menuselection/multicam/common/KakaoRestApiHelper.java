@@ -35,7 +35,7 @@ public class KakaoRestApiHelper {
 		
 		KakaoBean kakaoBean = new KakaoBean();	
 		
-        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
+        String queryString = "?category_group_code=FD6&radius="+radius+"&x="+x+"&y="+y+"&sort=distance"; //+"&page="+searchVO.getCurrentPage()+"&size="+searchVO.getPageSize();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         ArrayList<DocumentBean> documentList = new ArrayList<DocumentBean>();
@@ -46,7 +46,7 @@ public class KakaoRestApiHelper {
 
         int page = 1;
         
-        //최대 45개까지만 조회 가능하고  거리를 줄이거나 카테고리명으로 분류하거나 해서 목록 수를 줄여야 할 것으로 보임.
+        //최대 45개까지만 조회 가능.
         while("false".equals(isEndToString)) {
 	        URI url = URI.create(API_SERVER_HOST+SEARCH_PLACE__CATEGORY_ADDRESS_PATH + queryString + "&page=" + page);
 	        page++;
