@@ -6,4 +6,7 @@
 	<select id='board' resultType="Board">
 		 select * from board
 	</select>
+	<select id='content' parameterType="String" resultType="Board">
+		 select * from board where bno=#{bno}
+	</select>
 </mapper>
