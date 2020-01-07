@@ -25,5 +25,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList(namespace+".board");
 
 	}
+	
+	public List<BoardBean> content(String bno) throws Exception{
+
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".content", bno);
+
+	}
 
 }

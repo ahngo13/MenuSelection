@@ -21,7 +21,11 @@ public class BoardServiceImpl implements BoardService {
 		return dao.board();
 	}
 
-
+	@Override
+	public List<BoardBean> content(String bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.content(bno);
+	}
 
 
 }

@@ -8,4 +8,6 @@ public interface BoardDAO {
 
 	public List<BoardBean> board() throws Exception;
 	
+	public List<BoardBean> content(String bno) throws Exception;
+	
 }
