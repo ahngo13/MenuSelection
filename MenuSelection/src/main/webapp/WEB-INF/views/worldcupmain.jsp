@@ -20,14 +20,13 @@
 		<img style="display:none;" id="test02" width="220" height="277" src="/resources/images/testimage2.jpg" alt="" onclick="button_click('2');">
 		<img style="display:none;" id="test03" width="220" height="277" src="/resources/images/testimage3.jpg" alt="" onclick="button_click('3');">
 		<img style="display:none;" id="test04" width="220" height="277" src="/resources/images/testimage4.jpg" alt="" onclick="button_click('4');">
-		<input type="hidden" id="first" value="">
-		<input type="hidden" id="second" value="">
+		<input type="hidden" id="first" value="0">
+		<input type="hidden" id="second" value="0">
 <br>
 
 
 <script>
-	var first=0;
-	var second=0;
+	
 
 	function button_click(imgGb) {
 		if(imgGb==1 || imgGb==2){
@@ -43,7 +42,7 @@
 			$("#test02").hide();
 			
 			$("#first").val(imgGb);
-			var first = $("#first").val();
+			
 		}
 		else if(imgGb==3 || imgGb==4){
 			if(imgGb==3){
@@ -57,6 +56,10 @@
 			
 			$("#second").val(imgGb);
 			var second = $("#second").val();
+			var first = $("#first").val();
+			
+			$("#test0"+first).show();
+			$("#test0"+second).show();
 		}
 		else if(imgGb==0){
 			$("#start").hide();
@@ -65,9 +68,8 @@
 		}
 		
 		
-/* 		 if(first!=0 && second!=0){
-			$("#test0"+first).show();
-			$("#test0"+second).show();
+ 	/* 	 if(first!=0&&second!=0){
+			
 
 		}  */
 		
