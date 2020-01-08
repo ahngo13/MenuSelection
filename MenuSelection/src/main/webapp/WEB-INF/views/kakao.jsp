@@ -143,25 +143,20 @@
 	        	jQuery('#place-list').empty();
 	        	jQuery('#place-list').append(data);
 	        	
-	        	// 마커를 표시할 위치와 title 객체 배열입니다 
-	        	var positions = [
-	        	    {
-	        	        title: '카카오', 
-	        	        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-	        	    },
-	        	    {
-	        	        title: '생태연못', 
-	        	        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-	        	    },
-	        	    {
-	        	        title: '텃밭', 
-	        	        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-	        	    },
-	        	    {
-	        	        title: '근린공원',
-	        	        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-	        	    }
-	        	];
+	        	
+	        	var pageableCount = Number(jQuery('#pageableCount').val());
+	        	var positions = [];
+				for(var i=1; i<pageableCount+1; i++){
+					var listName = jQuery('#listName'+i).val();
+					var listX = Number(jQuery('#listX'+i).val());
+					var listY = Number(jQuery('#listY'+i).val());
+					
+					positions.push({
+						title: listName,
+						latlng: new kakao.maps.LatLng(listY, listX)
+					});
+        		}
+				
 
 	        	// 마커 이미지의 이미지 주소입니다
 	        	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
