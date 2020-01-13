@@ -76,3 +76,30 @@ https://demos.creative-tim.com/get-shit-done/components.html
 
 알려줄 수 없다고 하여 제한된 기능으로 개발 필요.
 
+
+#### 데이터베이스 board 테이블 생성
+
+데이터베이스 생성
+
+`create database menuselection;`
+
+<br>
+
+board테이블 생성
+
+```sql
+create table menuselection.board (
+	bno int auto_increment,
+	title varchar(1000),
+	content varchar(5000),
+	writer varchar(20),
+	passwd varchar(20),
+	primary key (bno)
+);
+```
+
+<br>
+
+insert test data
+
+`insert into board values(null, 'title', 'content', 'writer', 'passwd');`
