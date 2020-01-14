@@ -26,6 +26,20 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.content(bno);
 	}
+	
+	@Override
+	public String confirmPW(String bno) throws Exception {
+		
+		return dao.confirmPW(bno);
+	}
 
-
+	@Override
+	public void update(String bno, String title, String content) throws Exception {
+		dao.update(bno, title, content);
+	}
+	
+	@Override
+	public void delete(String bno) throws Exception {
+		dao.delete(bno);
+	}
 }

@@ -33,10 +33,11 @@
 <body>
 
 	<div style="width:1100px; margin:100px auto">
-		
-		<form>
+		<c:forEach items="${list}" var="board">
+		<form action="/board/action" method="post">
+			<input type="hidden" name="bno" value=${board.bno } />
 			<table style="max-width:1100px; width:1100px;">
-				<c:forEach items="${list}" var="board">
+				
 				<tr style="width:100px;">
 					<td>번호</td>
 					<td>${board.bno}</td>
@@ -47,9 +48,9 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" rows="20" cols="100">${board.writer}</textarea></td>
+					<td><textarea name="content" rows="20" cols="100">${board.content}</textarea></td>
 				</tr>
-				</c:forEach>
+				
 			
 			</table>
 			
@@ -63,7 +64,7 @@
 			</div>
 	
 		</form>
-	
+		</c:forEach>
 	</div>
 	
 	

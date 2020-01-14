@@ -21,16 +21,31 @@ public class BoardDAOImpl implements BoardDAO {
 
 	public List<BoardBean> board() throws Exception{
 
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".board");
 
 	}
 	
 	public List<BoardBean> content(String bno) throws Exception{
 
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".content", bno);
 
 	}
+	
+	public String confirmPW(String bno) throws Exception {
+		
+		return sqlSession.selectOne(namespace+".confirmPW", bno);
+	}
 
+	public void update(String bno, String title, String content) throws Exception {
+		BoardBean board = new BoardBean();
+		board.setBno(Integer.parseInt(bno));
+		board.setTitle(title);
+		board.setContent(content);
+		sqlSession.update(namespace+".update", board);
+	}
+	
+	public void delete(String bno) throws Exception {
+		sqlSession.delete(namespace+".delete", bno);
+	}
+		
 }

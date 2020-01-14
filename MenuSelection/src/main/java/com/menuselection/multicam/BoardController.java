@@ -1,7 +1,10 @@
 package com.menuselection.multicam;
 
 import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +31,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board/content", method = RequestMethod.GET)
-	public String content(Model model, @RequestParam String bno) throws Exception {
+	public String content(Model model, @RequestParam(required=true) String bno) throws Exception {
 		List<BoardBean> list;
 		list = service.content(bno);
 		
@@ -36,5 +39,40 @@ public class BoardController {
 		return "content";
 		
 	}
+	
+	@RequestMapping(value = "/board/action", method = RequestMethod.POST)
+	public String action(Model model, HttpServletRequest httpServletRequest) throws Exception {
+		
+		String status="error";
+		
+		String bno = httpServletRequest.getParameter("bno");
+		String title = httpServletRequest.getParameter("title");
+		String content = httpServletRequest.getParameter("content");
+		String passwd = httpServletRequest.getParameter("passwd");
+		String action = httpServletRequest.getParameter("action");
+		
+		String confirmPw = service.confirmPW(bno);
+		
+		if(passwd.contentEquals(confirmPw)) {
+			if(action.contentEquals("commit")) {
+				service.update(bno, title, content);
+				status="update";
+			} else {
+				service.delete(bno);
+				status="delete";
+			}
+			
+		} else {
+			status="fail";
+		}
+		
+		
+		model.addAttribute("status", status);
+		
+		
+		return "boardAction";
+		
+	}
+		
 
 }

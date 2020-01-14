@@ -9,4 +9,13 @@
 	<select id='content' parameterType="String" resultType="Board">
 		 select * from board where bno=#{bno}
 	</select>
+	<select id='confirmPW' parameterType="String" resultType="String">
+		select passwd from board where bno=#{bno}
+	</select>
+	<update id="update">
+		update board set title = #{title}, content = #{content} where bno = #{bno}
+	</update>
+	<delete id="delete">
+		delete from board where bno = #{bno}
+	</delete>
 </mapper>
