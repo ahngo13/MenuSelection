@@ -206,10 +206,17 @@
         
 	} 
 	
+	function enterkey() {
+        if (window.event.keyCode == 13) {
+            // 엔터키가 눌렸을 때 실행할 내용
+        	addressSearch();
+        }
+	}
+	
 	
 </script>
 	<div class="form-group">
-	    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" class="form-control" />
+	    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" onkeyup="javascript:enterkey();" class="form-control" />
 	</div>  
 	<button class="btn btn-primary" onclick="javascript:addressSearch();">주소 검색</button>
 	<div id="address-list"></div>
