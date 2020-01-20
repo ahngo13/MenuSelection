@@ -12,7 +12,7 @@
 <p style="margin-top:-12px">
     <b>Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.</b> 참고해주세요.
 </p>
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="map" style="width:100%;height:350px;margin: 5px 5px 0px 5px;"></div>
 <script src="/resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8507bdcbfea943c9e828a2a8c91bd11a"></script>
 <script>
@@ -125,7 +125,7 @@
  	function addressSelect(y, x){
 		
 		let locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		let message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+		let message = '<div style="padding:10px; text-align:center;">현위치</div>'; // 인포윈도우에 표시될 내용입니다
 		
 		jQuery('#address-list').empty();
 		jQuery('#searchX').val(x);
@@ -196,7 +196,7 @@
 	function placeSelect(y, x, placeName){
 		
 		let locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		let message = '<div style="padding:10px;">' + placeName + '</div>'; // 인포윈도우에 표시될 내용입니다
+		let message = '<div style="padding:10px; text-align:center">' + placeName + '</div>'; // 인포윈도우에 표시될 내용입니다
 		let searchX = jQuery('#searchX').val();
 		let searchY = jQuery('#searchY').val();
 		
@@ -215,22 +215,24 @@
 	
 	
 </script>
-	<div class="form-group">
-	    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" onkeyup="javascript:enterkey();" class="form-control" />
-	</div>  
-	<button class="btn btn-primary" onclick="javascript:addressSearch();">주소 검색</button>
+	<div class="form-group" style="margin-bottom: 0px">
+		<div>
+		    <input type="text" id="keyword" name="keyword" placeholder="주소 입력" onkeyup="javascript:enterkey();" class="form-control" style="width: 250px;float: left; margin: 5px 2px 5px 5px;"/>
+			<button class="btn btn-primary" onclick="javascript:addressSearch();" style="margin: 5px 5px 5px 2px; width: 100px">주소 검색</button>
+		</div>
+	</div>
 	<div id="address-list"></div>
 	<div id="place-list"></div>
 	<input type="hidden" id="searchX">
 	<input type="hidden" id="searchY">
 	 
-	<h2>키워드 검색 결과</h2>
+<%-- 	<h2>키워드 검색 결과</h2>
 		region = ${result.region}<br>
 		keyword = ${result.keyword}<br>
 		selectedRegion = ${result.selectedRegion}<br>
 		pageableCount = ${result.pageableCount}<br>
 		totalCount = ${result.totalCount}<br>
-		isEnd = ${result.isEnd}<br>
+		isEnd = ${result.isEnd}<br> --%>
 		
 	<c:forEach items="${result.documentList}" var="document">
 	<hr>
