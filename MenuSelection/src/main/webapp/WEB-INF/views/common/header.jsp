@@ -7,16 +7,12 @@
 	<link rel="icon" type="/resources/image/png" href="/resources/assets/img/favicon.png">	
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Get Shit Done Kit by Creative Tim</title>
+	<title>Menu Selection</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-	
-    <link href="/resources/bootstrap3/css/bootstrap.css" rel="stylesheet" />
-	<link href="/resources/assets/css/gsdk.css" rel="stylesheet" />  
-    <link href="/resources/assets/css/demo.css" rel="stylesheet" /> 
-    
-    <!--     Font Awesome     -->
-    <link href="/resources/bootstrap3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>

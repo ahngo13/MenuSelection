@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.menuselection.multicam.bean.TestBean;
 import com.menuselection.multicam.service.TestService;
+
 @Controller
 public class WorldCupController {
 
@@ -20,14 +21,9 @@ public class WorldCupController {
 	@RequestMapping(value = "/worldcup/main", method = RequestMethod.GET)
 
 	public String worldcupmain(Model model) throws Exception {
-		List<TestBean> list;
-		list = service.test();
-		
-		model.addAttribute("list", list);
-		System.out.println("Start the WorldCup");
 
 		return "worldcupmain";
-		
+
 	}
 
 }
