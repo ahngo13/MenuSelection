@@ -7,7 +7,7 @@
          <div class="panel panel-default">
            <div class="panel-heading">
              <h4 class="panel-title">
-               <a onclick="javascript:addressSelect(${list.y}, ${list.x});" class="state-open">
+               <a onclick="javascript:placeSelect(${list.y}, ${list.x}, '${list.placeName}');" class="state-open">
                  ${list.placeName}
                <input type="hidden" id="listX${status.count}" value="${list.x}">
                <input type="hidden" id="listY${status.count}" value="${list.y}">

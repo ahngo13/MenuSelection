@@ -16,13 +16,13 @@
 <script src="/resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8507bdcbfea943c9e828a2a8c91bd11a"></script>
 <script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨 
 	    }; 
 	
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
 	/*
 	크롬에서는 geolocation이 ssl 적용하지 않을 경우 사용 불가하므로 테스트를 위해 주석 처리
@@ -56,16 +56,16 @@
 	function displayMarker(locPosition, message) {
 	
 	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({  
+	    let marker = new kakao.maps.Marker({  
 	        map: map, 
 	        position: locPosition
 	    }); 
 	    
-	    var iwContent = message, // 인포윈도우에 표시할 내용
+	    let iwContent = message, // 인포윈도우에 표시할 내용
 	        iwRemoveable = true;
 	
 	    // 인포윈도우를 생성합니다
-	    var infowindow = new kakao.maps.InfoWindow({
+	    let infowindow = new kakao.maps.InfoWindow({
 	        content : iwContent,
 	        removable : iwRemoveable
 	    });
@@ -78,8 +78,8 @@
 	}   
 
 	function addressSearch(beforeNextGb){
-		var keyword = jQuery('#keyword');
-		var page = Number.parseInt(jQuery('#page').val());
+		let keyword = jQuery('#keyword');
+		let page = Number.parseInt(jQuery('#page').val());
 	
 		if(beforeNextGb == 'back'){
 			page--;
@@ -124,8 +124,8 @@
 	
  	function addressSelect(y, x){
 		
-		var locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+		let locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		let message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 		
 		jQuery('#address-list').empty();
 		jQuery('#searchX').val(x);
@@ -144,8 +144,8 @@
 	        	jQuery('#place-list').append(data);
 	        	
 	        	
-	        	var pageableCount = Number(jQuery('#pageableCount').val());
-	        	var positions = [];
+	        	let pageableCount = Number(jQuery('#pageableCount').val());
+	        	let positions = [];
 				for(var i=1; i<pageableCount+1; i++){
 					var listName = jQuery('#listName'+i).val();
 					var listX = Number(jQuery('#listX'+i).val());
@@ -159,7 +159,7 @@
 				
 
 	        	// 마커 이미지의 이미지 주소입니다
-	        	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	        	let imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 	        	    
 	        	for (var i = 0; i < positions.length; i ++) {
 	        	    
@@ -193,14 +193,14 @@
 	} 
  	
  	
-	function placeSelect(y, x){
+	function placeSelect(y, x, placeName){
 		
-		var locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		var message = '<div style="padding:10px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-		var searchX = jQuery('#searchX').val();
-		var searchY = jQuery('#searchY').val();
+		let locPosition = new kakao.maps.LatLng(y, x); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		let message = '<div style="padding:10px;">' + placeName + '</div>'; // 인포윈도우에 표시될 내용입니다
+		let searchX = jQuery('#searchX').val();
+		let searchY = jQuery('#searchY').val();
 		
-		jQuery('#place-list').empty();
+		//jQuery('#place-list').empty();
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
         
