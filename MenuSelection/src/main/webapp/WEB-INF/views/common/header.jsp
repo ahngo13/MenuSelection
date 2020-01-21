@@ -7,7 +7,7 @@
 	<link rel="icon" type="/resources/image/png" href="/resources/assets/img/favicon.png">	
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Menu Selection</title>
+	<title>What am i eating today?</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -16,3 +16,23 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+
+<body>
+	<div class="jumbotron text-center" style="margin-bottom: 0">
+		<h1>오늘 뭐먹지?</h1>
+		<p>Resize this responsive page to see the effect!</p>
+	</div>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/">메인</a></li>
+				<li class="nav-item"><a class="nav-link" href="/worldcup/main">음식 월드컵</a></li>
+				<li class="nav-item"><a class="nav-link" href="/board/main">맛집 공유 게시판</a></li>
+			</ul>
+		</div>
+	</nav>
