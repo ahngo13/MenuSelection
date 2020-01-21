@@ -6,7 +6,6 @@
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 
 
-
 	<div class="container" style="margin-top: 30px">
 		<div class="row">
 			<div class="col-sm-4">
@@ -47,10 +46,6 @@
 					nostrud exercitation ullamco.</p>
 			</div>
 		</div>
-	</div>
-
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<p>Footer</p>
 	</div>
 
 </body>
