@@ -3,8 +3,6 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="apple-touch-icon" sizes="76x76" href="/resources/assets/img/apple-icon.png">
-	<link rel="icon" type="/resources/image/png" href="/resources/assets/img/favicon.png">	
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>What am i eating today?</title>
