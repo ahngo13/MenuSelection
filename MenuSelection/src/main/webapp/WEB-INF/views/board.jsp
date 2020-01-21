@@ -5,37 +5,34 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<title>Insert title here</title>
 	<style>
-		table, tr, td {
-	 		border:1px solid black;
+	 	.table a {
+	 		text-decoration: none;
 	 	}
-	 	table {
-	 		border-collapse: collapse;
-	 		text-align:center;
-	 	}
-	 	td {
-	 	font-size: 20px;
-	 	}
+	 	
 	</style>
+	  
 </head>
-<body>
-	<%-- <c:forEach items="${list}" var="board">
-		e = ${board.bno }<br>
-		a = ${board.title}<br>
-		b = ${board.content }<br>
-		c = ${board.writer }<br>
-		d = ${board.passwd }<br><br>
-	</c:forEach> --%>
+<body>	
 	
-	<div style="width:1300px; margin:100px auto">
-		<table>
-			<tr >
-				<td style="width:200px;">번호</td>
-				<td style="width:800px;">제목</td>
-				<td style="width:300px;">글쓴이</td>
+ 
+	
+	<div class="container" style="margin-top: 100px;">
+	<table class="table table-bordered table-dark table-striped">
+			<thead>
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+				<td>글쓴이</td>
 			</tr>
-			
+			</thead>
+			<tbody>
 			<c:forEach items="${list}" var="board">
 			<tr>
 				<td>${board.bno }</td>
@@ -43,7 +40,7 @@
 				<td>${board.writer }</td>
 			</tr>
 			</c:forEach>
-			
+			</tbody>
 		</table>
 	
 	
