@@ -30,7 +30,6 @@
 	
 	<script>
 		alert("수정되었습니다");
-		location.href = '/board/main';
 	</script>
 	
 	<%
@@ -39,7 +38,14 @@
 	
 	<script>
 		alert("삭제되었습니다");
-		location.href="/board/main";
+	</script>
+	
+	<%
+		} else if(message.equals("insert")){	
+	%>
+	
+	<script>
+		alert("게시되었습니다");
 	</script>
 	
 	<%
@@ -52,5 +58,10 @@
 	<%
 	}
 	%>
+	
+	<script>
+		location.href="/board/main";
+	</script>
+
 </body>
 </html>

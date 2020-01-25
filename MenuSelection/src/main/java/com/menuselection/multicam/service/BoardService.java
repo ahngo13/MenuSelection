@@ -11,9 +11,11 @@ public interface BoardService {
 	
 	public String confirmPW(String bno) throws Exception;
 
-	public void update(String bno, String title, String content) throws Exception;
+	public void update(BoardBean board) throws Exception;
 
 	public void delete(String bno) throws Exception;
+	
+	public void writeNew(BoardBean board) throws Exception;
 	
 }
 

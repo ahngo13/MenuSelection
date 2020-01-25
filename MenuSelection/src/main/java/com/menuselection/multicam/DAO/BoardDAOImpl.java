@@ -36,11 +36,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace+".confirmPW", bno);
 	}
 
-	public void update(String bno, String title, String content) throws Exception {
-		BoardBean board = new BoardBean();
-		board.setBno(Integer.parseInt(bno));
-		board.setTitle(title);
-		board.setContent(content);
+	public void update(BoardBean board) throws Exception {
 		sqlSession.update(namespace+".update", board);
 	}
 	
@@ -48,4 +44,7 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(namespace+".delete", bno);
 	}
 		
+	public void writeNew(BoardBean board) throws Exception {
+		sqlSession.insert(namespace+".insert", board);
+	}
 }

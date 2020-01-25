@@ -44,35 +44,65 @@ public class BoardController {
 	public String action(Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		String status="error";
+		String confirmPw=null;
 		
 		String bno = httpServletRequest.getParameter("bno");
 		String title = httpServletRequest.getParameter("title");
 		String content = httpServletRequest.getParameter("content");
+		String writer = httpServletRequest.getParameter("writer");
 		String passwd = httpServletRequest.getParameter("passwd");
 		String action = httpServletRequest.getParameter("action");
 		
-		String confirmPw = service.confirmPW(bno);
 		
-		if(passwd.contentEquals(confirmPw)) {
-			if(action.contentEquals("commit")) {
-				service.update(bno, title, content);
-				status="update";
+		
+		BoardBean board = new BoardBean();
+		if(bno != null) {
+			board.setBno(Integer.parseInt(bno));
+			confirmPw = service.confirmPW(bno);
+		}
+		board.setTitle(title);
+		board.setContent(content);
+		board.setWriter(writer);
+		board.setPasswd(passwd);
+		
+		if(confirmPw!=null) {
+			if(passwd.contentEquals(confirmPw)) {
+				if(action.contentEquals("commit")) {
+					service.update(board);
+					status="update";
+				} else {
+					service.delete(bno);
+					status="delete";
+				}
+				
 			} else {
-				service.delete(bno);
-				status="delete";
+				status="fail";
 			}
 			
 		} else {
-			status="fail";
+			if(action.contentEquals("insert")) {
+				service.writeNew(board);
+				status="insert";
+			} else {
+				status="fail";
+			}
 		}
+		
 		
 		
 		model.addAttribute("status", status);
 		
-		
 		return "boardAction";
 		
 	}
+	
+	@RequestMapping(value = "/board/writeBoard", method = RequestMethod.GET)
+	public String write(Model model) throws Exception {
+		
+		
+		return "writeBoard";
+	}
+	
 		
 
 }

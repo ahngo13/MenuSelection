@@ -1,31 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<title>Insert title here</title>
-	<style>
-	 	.table a {
-	 		text-decoration: none;
-	 	}
-	 	
-	</style>
-	  
-</head>
-<body>	
+
+<%@include file="/WEB-INF/views/common/header.jsp"%> 
 	
- 
-	
-	<div class="container" style="margin-top: 100px;">
-	<table class="table table-bordered table-dark table-striped">
-			<thead>
+
+	<div class="container" style="margin-top: 100px; margin-bottom:200px;">
+		<table class="table table-bordered table-striped">
+			<thead style="border-bottom: 3px solid lightgray;">
 			<tr>
 				<td>번호</td>
 				<td>제목</td>
@@ -42,6 +26,8 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		
+		<a href="/board/writeBoard"><input class="btn btn-secondary" type="button" value="글쓰기"></a>
 	
 	
 	</div>
@@ -49,4 +35,7 @@
 	
 	
 </body>
+
+<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
 </html>
