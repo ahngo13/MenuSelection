@@ -34,12 +34,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void update(String bno, String title, String content) throws Exception {
-		dao.update(bno, title, content);
+	public void update(BoardBean board) throws Exception {
+		dao.update(board);
 	}
 	
 	@Override
 	public void delete(String bno) throws Exception {
 		dao.delete(bno);
+	}
+	
+	@Override
+	public void writeNew(BoardBean board) throws Exception {
+		dao.writeNew(board);
 	}
 }
