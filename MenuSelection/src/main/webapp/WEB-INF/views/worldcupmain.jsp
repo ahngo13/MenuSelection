@@ -7,8 +7,8 @@
 
 <body>
 
-	<div class="container" style="margin: 30px; height: 500px;">
-		<br><br><br>
+	<div class="container" style="margin: 30px; height:auto; min-height:800px;">
+		<br><br>
 			<h1 id="p" style="text-align: center; font-size:50px; font-weight: bold;">
 				음식 월드컵을 시작하겠습니다...!!!<br>
 				<br>

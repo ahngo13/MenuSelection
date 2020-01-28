@@ -6,7 +6,7 @@
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 
 
-	<div class="container" style="margin-top: 30px; height:600px;">
+	<div class="container" style="margin-top: 30px; height:auto; min-height:800px;">
 		<div class="row">
 			<div class="col-sm-2">
 				<h2>About Us</h2>
