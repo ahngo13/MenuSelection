@@ -41,17 +41,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board/action", method = RequestMethod.POST)
-	public String action(Model model, HttpServletRequest httpServletRequest) throws Exception {
+	public String action(Model model, HttpServletRequest req) throws Exception {
 		
 		String status="error";
 		String confirmPw=null;
+		req.setCharacterEncoding("UTF-8");
 		
-		String bno = httpServletRequest.getParameter("bno");
-		String title = httpServletRequest.getParameter("title");
-		String content = httpServletRequest.getParameter("content");
-		String writer = httpServletRequest.getParameter("writer");
-		String passwd = httpServletRequest.getParameter("passwd");
-		String action = httpServletRequest.getParameter("action");
+		
+		String bno = req.getParameter("bno");
+		String title = req.getParameter("title");
+		String content = req.getParameter("content");
+		String writer = req.getParameter("writer");
+		String passwd = req.getParameter("passwd");
+		String action = req.getParameter("action");
 		
 		
 		

@@ -19,6 +19,7 @@
 		delete from board where bno = #{bno}
 	</delete>
 	<insert id="insert">
-		insert into board values(null, #{title}, #{content}, #{writer}, #{passwd});
+		insert into board values(null, #{title}, #{content}, #{writer}, #{passwd});	
 	</insert>
+	
 </mapper>
