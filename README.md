@@ -103,3 +103,5 @@ create table menuselection.board (
 insert test data
 
 `insert into board values(null, 'title', 'content', 'writer', 'passwd');`
+
+데이터 베이스에서도 반드시 utf-8세팅 확인할 
