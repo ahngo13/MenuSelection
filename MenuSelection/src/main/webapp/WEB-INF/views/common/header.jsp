@@ -14,24 +14,34 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Hi+Melody&display=swap&subset=korean" rel="stylesheet">
+	<style>
+		#p {
+        font-family: "Hi Melody", cursive;
+        font-size: 23px;
+      	}
+      	#ps{
+      		font-weight: 500;
+      	}
+	</style>
 	
 	
 </head>
 
 <body>
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<h1>오늘 뭐먹지?</h1>
+	<div class="jumbotron text-center" style="margin-bottom: 0" id="p">
+		<h1 style="font-size:50px; font-weight: bold;">오늘 뭐먹지?</h1>
 	</div>
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a class="navbar-brand" href="/">Home</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="p">
+		<a class="navbar-brand" href="/" id="p">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" id="p">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<div class="collapse navbar-collapse" id="collapsibleNavbar p">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="/worldcup/main"> 음식 월드컵 </a></li>
-				<li class="nav-item"><a class="nav-link" href="/board/main"> 맛집 공유 게시판 </a></li>
+				<li class="nav-item"><a class="nav-link" href="/worldcup/main" id="p ps" > 음식 월드컵 </a></li>
+				<li class="nav-item"><a class="nav-link" href="/board/main"id="p ps"> 맛집 공유 게시판 </a></li>
 			</ul>
 		</div>
 	</nav>
