@@ -95,7 +95,8 @@ create table menuselection.board (
 	writer varchar(20),
 	passwd varchar(20),
 	primary key (bno)
-);
+)
+default charater set=utf8;
 ```
 
 <br>
