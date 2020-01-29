@@ -95,28 +95,15 @@
 			return;
 		}
 		
-		/* var formData = ({
-			email: email.val(),
-			password : password.val()
-		}) */
-		
 		jQuery.ajax({
 		    type: "get",
-			//data: formData,
 	        url:'/kakao/address-search?keyword='+keyword.val()+'&page='+page,
 	        success:function(data){
 	        	jQuery('#address-list').empty();
 	        	jQuery('#address-list').append(data);
 	        	
-			   /* if(data == '200'){
-				   alert('200');
-				   //goURL('/member/join-success');
-				   return;
-			   } */
 	        },
 	        error: function(jqXHR, textStatus, errorThrown) {
-                //jQuery('#goodsListLoadingZone').hide();
-                //ui_loading.detachLoading();//로딩이미지 none
                 alert("일시적인 장애가 발생했습니다. 잠시후에 다시 요청 하시기 바랍니다.");
     		}
 	    })
@@ -178,15 +165,8 @@
 	        	    });
 	        	}
 	        	
-			   /* if(data == '200'){
-				   alert('200');
-				   //goURL('/member/join-success');
-				   return;
-			   } */
 	        },
 	        error: function(jqXHR, textStatus, errorThrown) {
-                //jQuery('#goodsListLoadingZone').hide();
-                //ui_loading.detachLoading();//로딩이미지 none
                 alert("일시적인 장애가 발생했습니다. 잠시후에 다시 요청 하시기 바랍니다.");
     		}
 	    })
@@ -200,8 +180,6 @@
 		let searchX = jQuery('#searchX').val();
 		let searchY = jQuery('#searchY').val();
 		
-		//jQuery('#place-list').empty();
-        // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
         
 	} 
@@ -226,14 +204,6 @@
 	<input type="hidden" id="searchX">
 	<input type="hidden" id="searchY">
 	 
-<%-- 	<h2>키워드 검색 결과</h2>
-		region = ${result.region}<br>
-		keyword = ${result.keyword}<br>
-		selectedRegion = ${result.selectedRegion}<br>
-		pageableCount = ${result.pageableCount}<br>
-		totalCount = ${result.totalCount}<br>
-		isEnd = ${result.isEnd}<br> --%>
-		
 	<c:forEach items="${result.documentList}" var="document">
 	<hr>
 		placeName = ${document.placeName}<br>

@@ -4,10 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>		
-		<typeAlias alias="Test" type="com.menuselection.multicam.bean.TestBean" />
 		<typeAlias alias="Board" type="com.menuselection.multicam.bean.BoardBean" />
-		<typeAlias alias="Kakao" type="com.menuselection.multicam.bean.KakaoBean" />
-		<typeAlias alias="Food" type="com.menuselection.multicam.bean.FoodBean" />
 	</typeAliases>
-    
 </configuration>
