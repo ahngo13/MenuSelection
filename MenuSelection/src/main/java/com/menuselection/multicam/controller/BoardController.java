@@ -1,4 +1,4 @@
-package com.menuselection.multicam;
+package com.menuselection.multicam.controller;
 
 import java.util.List;
 

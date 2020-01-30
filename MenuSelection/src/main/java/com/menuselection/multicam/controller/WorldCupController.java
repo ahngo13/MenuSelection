@@ -1,4 +1,4 @@
-package com.menuselection.multicam;
+package com.menuselection.multicam.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.menuselection.multicam;
+package com.menuselection.multicam.controller;
 
 import java.util.Locale;
 import org.slf4j.Logger;
